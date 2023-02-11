@@ -2,6 +2,8 @@ import React from 'react'
 import styles from "./SideBar.module.css"
 import SidebarHeader from './SidebarHeader'
 import Link from 'next/link';
+import { useAxios } from '@/hooks/useAxios';
+import { useEffect } from 'react';
 
 const Sidebar = () => {
 
@@ -9,6 +11,17 @@ const Sidebar = () => {
     {id: 1, title: "channel 1"},
     {id: 2, title: "channel 2"}
   ]
+
+  // api inside of useEffect
+  const { axios } = useAxios();
+  useEffect(() => {
+    const fetch = async() => {
+      const data = await axios.get("/channels.json")
+      console.log("response: ", data)
+    }
+
+    fetch();
+  }, []);
 
   return (
     <div className={styles.body}>
