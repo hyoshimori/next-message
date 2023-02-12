@@ -4,24 +4,27 @@ import SidebarHeader from './SidebarHeader'
 import Link from 'next/link';
 import { useAxios } from '@/hooks/useAxios';
 import { useEffect } from 'react';
+import useChannels from '@/hooks/useChannels';
 
 const Sidebar = () => {
 
-  const channels =[
-    {id: 1, title: "channel 1"},
-    {id: 2, title: "channel 2"}
-  ]
+  // get chaneels data from useChannels component
+  const { channels } = useChannels();
+  // const channels =[
+  //   {id: 1, title: "channel 1"},
+  //   {id: 2, title: "channel 2"}
+  // ]
 
-  // api inside of useEffect
-  const { axios } = useAxios();
-  useEffect(() => {
-    const fetch = async() => {
-      const data = await axios.get("/channels.json")
-      console.log("response: ", data)
-    }
+  // // api inside of useEffect
+  // const { axios } = useAxios();
+  // useEffect(() => {
+  //   const fetch = async() => {
+  //     const data = await axios.get("/channels.json")
+  //     console.log("response: ", data.data[1].createdAt)
+  //   }
 
-    fetch();
-  }, []);
+  //   fetch();
+  // }, []);
 
   return (
     <div className={styles.body}>
