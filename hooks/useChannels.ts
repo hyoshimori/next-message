@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAxios } from './useAxios'
 import { useEffect, useState } from "react";
-import { Channel } from "@/types/channel"
+import { Channel } from "@/types/Channel"
 
 const useChannels = () => {
   const { axios } = useAxios()

@@ -12,7 +12,7 @@ export const useAxios = () => {
   instance.interceptors.response.use(
     (response: AxiosResponse): AxiosResponse => {
       // when the data is nested we nedd deep: true
-      return camelcaseKeys(response, {deep: true})
+      return camelcaseKeys(response, { deep: true })
     }
   )
 
