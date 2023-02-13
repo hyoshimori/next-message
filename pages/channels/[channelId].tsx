@@ -9,11 +9,11 @@ const ChannelPage = () => {
 
   const { query } = useRouter();
 
-  const {messages, fetchmessage} = useMessages();
+  const {messages, fetchmessage} = useMessages(query.channelId as string);
 
-  useEffect(() => {
-    fetchmessage(query.channelId as string);
-  }, [query.channelId as string])
+  // useEffect(() => {
+  //   fetchmessage(query.channelId as string);
+  // }, [query.channelId as string])
   // ↑useEffect depend on query.channelId. So add this to the rendering process
   // ↑This allows rerendering when the channel is swiched
   return(
@@ -23,7 +23,7 @@ const ChannelPage = () => {
       </div>
       <MessageTimeline messages={messages}></MessageTimeline>
       {/* <div>SendMessages</div> */}
-      <SendMessageBox></SendMessageBox>
+      <SendMessageBox channelId={query.channelId as string}></SendMessageBox>
     </div>
   )
 }

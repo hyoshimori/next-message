@@ -3,9 +3,13 @@ import { useState } from "react";
 import useMessages from "@/hooks/useMessages";
 import styles from "./SendMessageBox.module.css";
 
-const SendMessageBox = () => {
+type Props = {
+  channelId : string;
+}
+
+const SendMessageBox = (props: Props) => {
   const [message, setMessage] = useState("");
-  const { postMessage } = useMessages();
+  const { postMessage } = useMessages(props.channelId);
 
   const onclickSend = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

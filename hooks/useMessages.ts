@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useAxios } from './useAxios'
 import * as MessageType from '@/types/Message';
+import useInterval from './useInterval';
 
-const useMessages = () => {
+const useMessages = (channelId: string) => {
   const { axios } = useAxios();
   const [messages, setMessages] = useState<MessageType.Message[]>([]);
 
-  const fetchmessage = async (channelId: string) => {
+  const fetchmessage = async () => {
     const response = await axios.get<MessageType.Message[]>("messages.json");
     // remove null
     const data = Object.values(response.data).filter((v) => v);
@@ -17,7 +18,21 @@ const useMessages = () => {
     setMessages(messagesForChennel);
   };
 
+  useInterval(() => {
+      fetchmessage("1");
+  }, 1000)
+  // useInterval(
+  //   () => {
+  //     // Your custom logic here
+  //     setCount(count + 1)
+  //   },
+  //   // Delay in milliseconds or null to stop it
+  //   isPlaying ? delay : null,
+  // )
+
+
   const postMessage = async (m: MessageType.Message) => {
+    m.channelId = channelId
     try{
       const response = await axios.post<MessageType.Message>(
         "messages.json",
