@@ -1,5 +1,7 @@
 import MessageTimeline from '@/components/MessageTimeline';
 import styles from '@/pages/channels/channelPage.module.css'
+import SendMessageBox from "@/components/SendMessageBox";
+
 
 const ChannelPage = () => {
   const ms = [
@@ -29,7 +31,8 @@ const ChannelPage = () => {
         <h2>Title</h2>
       </div>
       <MessageTimeline messages={ms}></MessageTimeline>
-      <div>SendMessages</div>
+      {/* <div>SendMessages</div> */}
+      <SendMessageBox></SendMessageBox>
     </div>
   )
 }
