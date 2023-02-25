@@ -17,7 +17,7 @@ const SendMessageBox = (props: Props) => {
       const requestMessage = {
         id: "test",
         body: message,
-        channelId: "1",
+        channelId: "",
         createdAt: new Date(),
       }
 
